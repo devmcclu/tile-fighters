@@ -29,4 +29,3 @@ void ATileActor::CreateMesh(UStaticMesh* Mesh)
 {
 	TileMesh->SetStaticMesh(Mesh);
 }
-

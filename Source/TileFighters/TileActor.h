@@ -23,8 +23,15 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	virtual void CreateMesh(UStaticMesh* Mesh);
+	UFUNCTION(BlueprintCallable, Category = "Tile Functions")
+	void CreateMesh(UStaticMesh* Mesh);
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tile Components")
 	UStaticMeshComponent* TileMesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tile Components")
+	bool isTeam1Spawn;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tile Components")
+	bool isTeam2Spawn;
 };
