@@ -26,6 +26,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Tile Functions")
 	void CreateMesh(UStaticMesh* Mesh);
 
+	UFUNCTION(BlueprintCallable, Category = "Tile Functions")
+	void SpawnFighter();
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Tile Components")
 	UStaticMeshComponent* TileMesh;
 

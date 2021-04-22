@@ -5,6 +5,9 @@
 #include "Net/UnrealNetwork.h"
 #include "GameFramework/DamageType.h"
 #include "Kismet/GameplayStatics.h"
+#include "Components/SphereComponent.h"
+#include "Components/StaticMeshComponent.h"
+#include "UObject/ConstructorHelpers.h"
 
 // Sets default values
 AFighterPawn::AFighterPawn()
@@ -17,6 +20,25 @@ AFighterPawn::AFighterPawn()
 
     DamageType = UDamageType::StaticClass();
     Damage = 1.0f;
+
+    //Definition for the SphereComponent that will serve as the Root component for the projectile and its collision.
+    SphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("RootComponent"));
+    SphereComponent->InitSphereRadius(37.5f);
+    SphereComponent->SetCollisionProfileName(TEXT("BlockAllDynamic"));
+    RootComponent = SphereComponent;
+
+    //Definition for the Mesh that will serve as our visual representation.
+    static ConstructorHelpers::FObjectFinder<UStaticMesh> DefaultMesh(TEXT("/Game/StarterContent/Shapes/Shape_Sphere.Shape_Sphere"));
+    StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
+    StaticMesh->SetupAttachment(RootComponent);
+
+    //Set the Static Mesh and its position/scale if we successfully found a mesh asset to use.
+    if (DefaultMesh.Succeeded())
+    {
+        StaticMesh->SetStaticMesh(DefaultMesh.Object);
+        StaticMesh->SetRelativeLocation(FVector(0.0f, 0.0f, -37.5f));
+        StaticMesh->SetRelativeScale3D(FVector(0.75f, 0.75f, 0.75f));
+    }
 }
 
 void AFighterPawn::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
