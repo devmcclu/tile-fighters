@@ -93,4 +93,8 @@ public:
 	// New postion to move to
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
 	FVector newLocation;
+
+	// New postion to move to
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Gameplay")
+	bool hasMoved;
 };

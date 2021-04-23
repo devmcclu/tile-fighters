@@ -27,9 +27,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	/*UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AFighterPawn* CurrentFighterPawn;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<AFighterPawn*> FighterPawnList;
+	TArray<AFighterPawn*> FighterPawnList;*/
 };

@@ -17,7 +17,7 @@ ATileActor::ATileActor()
 void ATileActor::BeginPlay()
 {
 	Super::BeginPlay();
-	SpawnFighter();
+	//SpawnFighter();
 }
 
 // Called every frame
@@ -43,6 +43,14 @@ void ATileActor::SpawnFighter()
 		spawnParameters.Instigator = GetInstigator();
 		spawnParameters.Owner = this;
 
-		GetWorld()->SpawnActor<AFighterPawn>(spawnLocation, spawnRotation, spawnParameters);
+		AFighterPawn* newFighter = GetWorld()->SpawnActor<AFighterPawn>(spawnLocation, spawnRotation, spawnParameters);
+		if (isTeam1Spawn)
+		{
+			newFighter->Team = 0;
+		}
+		else
+		{
+			newFighter->Team = 1;
+		}
 	}
 }
